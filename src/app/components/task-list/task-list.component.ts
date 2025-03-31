@@ -18,6 +18,7 @@ export class TaskListComponent {
   ngOnInit(): void {
     this.taskService.getTasks().subscribe({
       next: (response) => {
+        console.log("Données reçues :", response.tasks);
         this.tasks = response.tasks;
         this.error = response.error; // Récupère l'indicateur d'erreur
         if (this.error) {
