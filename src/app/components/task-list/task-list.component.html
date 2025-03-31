@@ -1,9 +1,22 @@
 <div class="container">
-    <h2>Liste des tâches</h2>
-    <ul>
-      <li *ngFor="let task of tasks">
-        <span [class.completed]="task.isCompleted">{{ task.description }}</span>
-      </li>
-    </ul>
+  <h2>Liste des tâches</h2>
+  <!-- Cas où la connexion à l'API est bloquée -->
+  <div *ngIf="error">
+    <p class="error">Impossible de récupérer les tâches. Vérifiez la connexion avec l'API.</p>
   </div>
+
+  <div *ngIf="!error">
+    <p>Nombre de tâches : {{tasks.length}}</p>
+    <div *ngIf="tasks.length > 0; else elseTasksEmpty">
+      <ul>
+        <li *ngFor="let task of tasks">
+          <span [class.completed]="task.isCompleted">{{ task.description }}</span>
+        </li>
+      </ul>
+    </div>
+    <ng-template #elseTasksEmpty>
+      <p>La liste des tâches est vide !</p>
+    </ng-template>
+  </div>
+</div>
   

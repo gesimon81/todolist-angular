@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Task } from '../models/task.model';
 
 @Injectable({
@@ -11,7 +11,13 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+  getTasks(): Observable<{ tasks: Task[]; error: boolean }> {
+    return this.http.get<Task[]>(this.apiUrl).pipe(
+      map((data) => ({ tasks: data, error: false })), // Transforme la réponse en { tasks, error }
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erreur de connexion à l\'API :', error.message);
+        return of({ tasks: [], error: true }); // Retourne une liste vide et signale l'erreur
+      })
+    );
   }
 }

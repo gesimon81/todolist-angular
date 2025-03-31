@@ -1,22 +1,29 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-list',
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
   tasks: Task[] = [];
+  error: boolean = false; // Indique si une erreur est survenue
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe(data => {
-      this.tasks = data;
+    this.taskService.getTasks().subscribe({
+      next: (response) => {
+        this.tasks = response.tasks;
+        this.error = response.error; // Récupère l'indicateur d'erreur
+        if (this.error) {
+          alert("Erreur de connexion à l'API");
+        }
+      }
     });
   }
 }
