@@ -30,7 +30,18 @@ export class TaskListComponent {
   }
 
   addTask() {
-    throw new Error('Method not implemented.');
+    const newTask: Task = {
+      description: 'Nouvelle tâche', isCompleted: false,
+    } as Task; //cast pour ignorer l'id lors dans la requête HTTP
+
+    this.taskService.addTask(newTask).subscribe(
+      (task) => {
+        this.tasks.push(task); // Ajoute la nouvelle tâche à la liste affichée
+      },
+      (error) => {
+        console.error('Erreur lors de l’ajout de la tâche :', error);
+      }
+    );
   }
 
   deleteTask(arg0: number) {
