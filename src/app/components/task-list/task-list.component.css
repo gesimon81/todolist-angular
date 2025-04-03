@@ -1,5 +1,90 @@
+/* Conteneur principal */
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre */
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Message d'erreur */
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Liste des tâches */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+/* Style pour les tâches complétées */
 .completed {
-    text-decoration: line-through;
-    color: green;
-  }
-  
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+/* Checkbox stylisée */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #28a745; /* Couleur verte pour les tâches complétées */
+}
+
+/* Boutons */
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.1s;
+}
+
+/* Bouton Ajouter */
+.btn-add {
+  background: #007bff;
+  color: white;
+}
+
+.btn-add:hover {
+  background: #0056b3;
+}
+
+/* Bouton Supprimer */
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #a71d2a;
+}
+
+/* Effet de clic */
+button:active {
+  transform: scale(0.95);
+}

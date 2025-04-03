@@ -1,15 +1,16 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, FormsModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
-export class TaskListComponent {
+export class TaskListComponent {  
   tasks: Task[] = [];
   error: boolean = false; // Indique si une erreur est survenue
 
@@ -26,5 +27,13 @@ export class TaskListComponent {
         }
       }
     });
+  }
+
+  addTask() {
+    throw new Error('Method not implemented.');
+  }
+
+  deleteTask(arg0: number) {
+    throw new Error('Method not implemented.');
   }
 }
