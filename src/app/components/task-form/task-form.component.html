@@ -1,0 +1,13 @@
+<form [formGroup]="taskForm" (ngSubmit)="submit()">
+    <label for="description">Descripton</label>
+    <input id="description" type="text" formControlName="description" />
+
+    <br/>
+
+    <label for="isCompleted">Tâche complétée</label>
+    <input id="isCompleted" type="checkbox" formControlName="isCompleted" />
+
+    <br/>
+
+    <button type="submit" >Valider</button>
+</form>

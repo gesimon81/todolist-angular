@@ -3,10 +3,11 @@ import { Component, Input } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
-  imports: [NgFor, NgIf, FormsModule],
+  imports: [NgFor, NgIf, FormsModule, RouterLink],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
@@ -29,7 +30,7 @@ export class TaskListComponent {
     });
   }
 
-  addTask() {
+  addTaskDefault() {
     const newTask: Task = {
       description: 'Nouvelle tâche', isCompleted: false,
     } as Task; //cast pour ignorer l'id lors dans la requête HTTP
@@ -47,4 +48,5 @@ export class TaskListComponent {
   deleteTask(arg0: number) {
     throw new Error('Method not implemented.');
   }
+
 }
