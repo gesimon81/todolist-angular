@@ -30,7 +30,7 @@ export class TaskFormComponent {
 
 
   submit() {
-    alert('submit taskForm');
+    console.log('submit taskForm');
 
     if (this.taskForm.valid) {
       this.addTask();
@@ -52,10 +52,6 @@ export class TaskFormComponent {
         console.error('Erreur lors de l’ajout de la tâche :', error);
       }
     );
-  }
-
-  alertTest() {
-    alert("test function");
   }
 
 }
