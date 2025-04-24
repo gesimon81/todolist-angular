@@ -23,7 +23,9 @@
     </ng-template>
 
     <!-- Bouton Ajouter -->
-    <button class="btn-add" (click)="addTask()">➕ Ajouter une tâche</button>
+    <button class="btn-add" (click)="addTaskDefault()">➕ Ajouter un exemple</button>
+    <button class="btn-add" [routerLink]="['/form']">➕ Ajouter une tâche</button>
+
   </div>
 </div>
 

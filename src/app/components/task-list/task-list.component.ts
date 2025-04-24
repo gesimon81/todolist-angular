@@ -3,10 +3,11 @@ import { Component, Input } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
-  imports: [NgFor, NgIf, FormsModule],
+  imports: [NgFor, NgIf, FormsModule, RouterLink],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
@@ -29,11 +30,23 @@ export class TaskListComponent {
     });
   }
 
-  addTask() {
-    throw new Error('Method not implemented.');
+  addTaskDefault() {
+    const newTask: Task = {
+      description: 'Nouvelle tâche', isCompleted: false,
+    } as Task; //cast pour ignorer l'id lors dans la requête HTTP
+
+    this.taskService.addTask(newTask).subscribe(
+      (task) => {
+        this.tasks.push(task); // Ajoute la nouvelle tâche à la liste affichée
+      },
+      (error) => {
+        console.error('Erreur lors de l’ajout de la tâche :', error);
+      }
+    );
   }
 
   deleteTask(arg0: number) {
     throw new Error('Method not implemented.');
   }
+
 }
