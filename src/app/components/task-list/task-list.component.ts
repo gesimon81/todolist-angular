@@ -18,6 +18,10 @@ export class TaskListComponent {
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
+    this.loadTasks();
+  }
+
+  loadTasks(): void {
     this.taskService.getTasks().subscribe({
       next: (response) => {
         console.log("Données reçues :", response.tasks);
@@ -45,8 +49,22 @@ export class TaskListComponent {
     );
   }
 
-  deleteTask(arg0: number) {
-    throw new Error('Method not implemented.');
+  deleteTask(task: Task) {   
+    this.taskService.deleteTask(task.id).subscribe({
+      next: () => {
+        console.log('Tâche supprimée');
+
+        //Modifier l'affichage de la liste
+        const indexTask: number = this.tasks.indexOf(task)
+
+        if(indexTask !== -1) {
+          this.tasks.splice(indexTask, 1);
+        }
+      },
+      error: (err) => {
+        console.error('Erreur lors de la suppression de la tâche :', err);
+      }
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { Task } from '../models/task.model';
@@ -23,5 +23,9 @@ export class TaskService {
 
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task);
+  }
+
+  deleteTask(taskId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${taskId}`, {responseType: 'text'});
   }
 }

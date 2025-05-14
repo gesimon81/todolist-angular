@@ -13,7 +13,7 @@
       <ul>
         <li *ngFor="let task of tasks">
           <span [class.completed]="task.isCompleted">{{ task.description }}</span>
-          <button class="btn-delete" (click)="deleteTask(task.id)">🗑</button>
+          <button class="btn-delete" (click)="deleteTask(task)">🗑</button>
         </li>
       </ul>
     </div>
